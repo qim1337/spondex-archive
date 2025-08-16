@@ -123,7 +123,7 @@ class YandexMusic(MusicService):
             track_key = (full_track.title.lower(), full_track.artists[0].name.lower())
 
             if track_key in tracks_seen:
-                tracks_to_remove.append(track.track_id)
+                tracks_to_remove.append(track.id)
             else:
                 tracks_seen.add(track_key)
 
