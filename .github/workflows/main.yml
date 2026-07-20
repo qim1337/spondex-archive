@@ -2,9 +2,8 @@ name: Music Sync
 
 on:
   schedule:
-    # Запуск каждые 6 часов
     - cron: '0 */6 * * *'
-  workflow_dispatch: # Позволяет запускать вручную кнопкой
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -16,16 +15,23 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-cache-dependency-path: true
+          python-version: '3.11'
+
+      - name: Install Poetry
+        run: pip install poetry
 
       - name: Install dependencies
+        run: poetry install
+
+      - name: Create credentials file
         run: |
-          pip install poetry
-          poetry install
+          cat <<EOF > credentials.json
+          {
+            "yandex_token": "${{ secrets.YANDEX_TOKEN }}",
+            "spotify_client_id": "${{ secrets.SPOTIFY_CLIENT_ID }}",
+            "spotify_client_secret": "${{ secrets.SPOTIFY_CLIENT_SECRET }}"
+          }
+          EOF
 
       - name: Run Spondex Sync
-        env:
-          YANDEX_TOKEN: ${{ secrets.YANDEX_TOKEN }}
-          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
         run: poetry run python main.py
