@@ -17,13 +17,9 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Poetry
-        run: pip install poetry
-
       - name: Install dependencies
         run: |
-          poetry config installers.max-workers 10
-          poetry install --no-root --no-interaction
+          pip install yandex-music spotipy
 
       - name: Create credentials file
         run: |
@@ -36,5 +32,4 @@ jobs:
           EOF
 
       - name: Run Spondex Sync
-        run: poetry run python main.py
-
+        run: python main.py
