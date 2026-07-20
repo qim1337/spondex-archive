@@ -53,8 +53,7 @@ jobs:
           DB_PASSWORD=""
           EOF
 
- 
-            - name: Run Spondex Sync
+      - name: Run Spondex Sync
         env:
           YANDEX_TOKEN: ${{ secrets.YANDEX_TOKEN }}
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
@@ -74,5 +73,3 @@ jobs:
           export SPOTIFY_CLIENT_SECRET="${{ secrets.SPOTIFY_CLIENT_SECRET }}"
           export SPOTIFY_REDIRECT_URI="http://127.0.0.1:8080"
           uv run python src/main.py
-
-
