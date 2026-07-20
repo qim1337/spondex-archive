@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install yandex-music spotipy
+          pip install yandex-music spotipy python-dotenv
 
       - name: Create credentials file
         run: |
@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Spondex Sync
         run: |
-          ls -R
-          python spondex/main.py || python src/main.py || python main.py
+          python src/main.py
+
 
 
