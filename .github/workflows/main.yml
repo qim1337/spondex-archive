@@ -35,24 +35,20 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
-      - name: Create .env configuration
-        run: |
-          cat <<EOF > .env
-          YANDEX_TOKEN="${{ secrets.YANDEX_TOKEN }}"
-          SPOTIFY_CLIENT_ID="${{ secrets.SPOTIFY_CLIENT_ID }}"
-          SPOTIFY_CLIENT_SECRET="${{ secrets.SPOTIFY_CLIENT_SECRET }}"
-          SPOTIFY_REDIRECT_URI="http://localhost:8080"
-          PGHOST="localhost"
-          PGPORT="5432"
-          PGDATABASE="music_sync"
-          PGUSER="postgres"
-          DB_HOST="localhost"
+      - name: Run Spondex Sync
+        env:
+          YANDEX_TOKEN: ${{ secrets.YANDEX_TOKEN }}
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REDIRECT_URI: "http://localhost:8080"
+          PGHOST: "localhost"
+          PGPORT: "5432"
+          PGDATABASE: "music_sync"
+          PGUSER: "postgres"
+          DB_HOST: "localhost"
           DB_PORT="5432"
           DB_NAME="music_sync"
           DB_USER="postgres"
           DB_PASSWORD=""
-          EOF
-
-      - name: Run Spondex Sync
         run: |
           uv run python src/main.py
