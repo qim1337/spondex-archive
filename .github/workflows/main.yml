@@ -35,3 +35,4 @@ jobs:
 
       - name: Run Spondex Sync
         run: poetry run python main.py
+
