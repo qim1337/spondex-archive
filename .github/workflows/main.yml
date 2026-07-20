@@ -46,9 +46,10 @@ jobs:
           PGDATABASE: "music_sync"
           PGUSER: "postgres"
           DB_HOST: "localhost"
-          DB_PORT="5432"
-          DB_NAME="music_sync"
-          DB_USER="postgres"
-          DB_PASSWORD=""
+          DB_PORT: "5432"
+          DB_NAME: "music_sync"
+          DB_USER: "postgres"
+          DB_PASSWORD: ""
         run: |
           uv run python src/main.py
+
