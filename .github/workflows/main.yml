@@ -69,7 +69,4 @@ jobs:
           DB_USER: "postgres"
           DB_PASSWORD: ""
         run: |
-          export SPOTIFY_CLIENT_ID="${{ secrets.SPOTIFY_CLIENT_ID }}"
-          export SPOTIFY_CLIENT_SECRET="${{ secrets.SPOTIFY_CLIENT_SECRET }}"
-          export SPOTIFY_REDIRECT_URI="http://127.0.0.1:8080"
-          uv run python src/main.py
+          uv run python -c "import os, dotenv; dotenv.load_dotenv(); import sys; sys.path.insert(0, 'src'); import main; main.main()"
