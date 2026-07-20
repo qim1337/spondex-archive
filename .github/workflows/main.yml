@@ -53,6 +53,7 @@ jobs:
           DB_PASSWORD=""
           EOF
 
+ 
             - name: Run Spondex Sync
         env:
           YANDEX_TOKEN: ${{ secrets.YANDEX_TOKEN }}
