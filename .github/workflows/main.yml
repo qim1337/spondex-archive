@@ -20,19 +20,18 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
-      - name: Create credentials file
+      - name: Create .env configuration
         run: |
-          cat <<EOF > credentials.json
-          {
-            "yandex_token": "${{ secrets.YANDEX_TOKEN }}",
-            "spotify_client_id": "${{ secrets.SPOTIFY_CLIENT_ID }}",
-            "spotify_client_secret": "${{ secrets.SPOTIFY_CLIENT_SECRET }}"
-          }
+          cat <<EOF > .env
+          YANDEX_TOKEN="${{ secrets.YANDEX_TOKEN }}"
+          SPOTIFY_CLIENT_ID="${{ secrets.SPOTIFY_CLIENT_ID }}"
+          SPOTIFY_CLIENT_SECRET="${{ secrets.SPOTIFY_CLIENT_SECRET }}"
+          SPOTIFY_REDIRECT_URI="http://localhost:8080"
           EOF
 
       - name: Run Spondex Sync
         run: |
-          uv run python src/main.py
+          uv run python src/main.py --force_full_sync
 
 
 
