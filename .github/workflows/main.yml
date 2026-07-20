@@ -31,8 +31,9 @@ jobs:
           }
           EOF
 
-            - name: Run Spondex Sync
-        run: |
+      - name: Run Spondex Sync
+         run: |
           ls -R
           python spondex/main.py || python src/main.py || python main.py
+
 
