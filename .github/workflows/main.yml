@@ -15,13 +15,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.10'
 
       - name: Install Poetry
         run: pip install poetry
 
       - name: Install dependencies
-        run: poetry install
+        run: |
+          poetry config installers.max-workers 10
+          poetry install --no-root --no-interaction
 
       - name: Create credentials file
         run: |
