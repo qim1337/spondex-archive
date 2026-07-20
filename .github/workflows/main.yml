@@ -13,7 +13,7 @@ jobs:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_DB: spondex
+          POSTGRES_DB: music_sync
           POSTGRES_HOST_AUTH_METHOD: trust
         ports:
           - 5432:5432
@@ -44,11 +44,11 @@ jobs:
           SPOTIFY_REDIRECT_URI="http://localhost:8080"
           PGHOST="localhost"
           PGPORT="5432"
-          PGDATABASE="spondex"
+          PGDATABASE="music_sync"
           PGUSER="postgres"
           DB_HOST="localhost"
           DB_PORT="5432"
-          DB_NAME="spondex"
+          DB_NAME="music_sync"
           DB_USER="postgres"
           DB_PASSWORD=""
           EOF
@@ -56,6 +56,3 @@ jobs:
       - name: Run Spondex Sync
         run: |
           uv run python src/main.py
-
-
-
