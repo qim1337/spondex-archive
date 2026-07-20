@@ -32,4 +32,4 @@ jobs:
           EOF
 
       - name: Run Spondex Sync
-        run: python main.py
+        run: python main.yml
